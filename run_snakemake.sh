@@ -10,3 +10,21 @@ snakemake --dryrun --snakefile ./workflow/rules/0_hello.smk "results/hello.txt"
 snakemake --cores 1 --snakefile ./workflow/rules/0_hello.smk "results/hello.txt"
 
 
+# Rule Chaining: ----------------------------------------------------------------------------------
+snakemake --dryrun --snakefile ./workflow/rules/1_rule_chain.smk "results/1_rule_chain/hello_2.txt"
+snakemake --cores 1 --snakefile ./workflow/rules/1_rule_chain.smk "results/1_rule_chain/hello_2.txt"
+cat results/1_rule_chain/hello_2.txt
+
+snakemake --dryrun --snakefile ./workflow/rules/1_rule_chain.smk "results/1_rule_chain/hello_4.txt"
+cat results/1_rule_chain/hello_4.txt
+
+snakemake --force --cores 1 --snakefile ./workflow/rules/1_rule_chain.smk \
+ "results/1_rule_chain/hello_0.txt" \
+ "results/1_rule_chain/hello_1.txt" \
+ "results/1_rule_chain/hello_2.txt" \
+ "results/1_rule_chain/hello_3.txt" \
+ "results/1_rule_chain/hello_4.txt" \
+ "results/1_rule_chain/hello_5.txt"
+cat results/1_rule_chain/hello_5.txt
+
+snakemake --dag --snakefile "./workflow/rules/1_rule_chain.smk" "results/1_rule_chain/hello_4.txt" | dot -Tsvg > results/1_rule_chain/dag.svg
