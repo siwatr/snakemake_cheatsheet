@@ -90,3 +90,6 @@ ls -l results/3_target_rule/
 snakemake --force --dryrun --snakefile ./workflow/rules/4_python_config.smk
 snakemake --force --cores 1 --snakefile ./workflow/rules/4_python_config.smk
 cat results/4_python_config/All_greetings.txt
+
+snakemake --dryrun --snakefile ./workflow/rules/5_wildcard_function.smk
+snakemake --cores 1 --snakefile ./workflow/rules/5_wildcard_function.smk
