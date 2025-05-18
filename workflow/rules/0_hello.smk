@@ -8,6 +8,7 @@ rule hello_world:
         echo "Hello, world!" > {output}
         """
 
+# The `{output}` here is referreing to the name of output file specified in the rule
 
 # /////////////////////////////////////////////////////////////////////////////////////////////////
 # EXERCISE
