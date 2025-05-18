@@ -67,3 +67,21 @@ cat results/2_wildcards/hello_student-1-Jane_Doe.001.1.txt
 snakemake --dryrun --snakefile ./workflow/rules/2_wildcards.smk "results/2_wildcards/student_info_Jane_Doe.001.1.txt"
 snakemake --cores 1 --snakefile ./workflow/rules/2_wildcards.smk "results/2_wildcards/student_info_Jane_Doe.001.1.txt"
 cat results/2_wildcards/student_info_Jane_Doe.001.1.txt
+
+# Rule all ---------------------------------------------------------------------------------
+snakemake --dryrun --snakefile ./workflow/rules/3_0_target_rule.smk
+snakemake --cores 1 --snakefile ./workflow/rules/3_0_target_rule.smk
+
+snakemake --dryrun --snakefile ./workflow/rules/3_1_target_rule.smk
+snakemake --cores 1 --snakefile ./workflow/rules/3_1_target_rule.smk
+
+# Note that you can still give snakemake a list of target files that may not be the default of the workflow.
+smk_targets="\
+results/3_target_rule/student_info_Jane_Doe.001.1.txt \
+results/3_target_rule/student_info_John_Doe.001.2.txt \
+results/3_target_rule/student_info_Max_Mustermann.002.1.txt \
+results/3_target_rule/student_info_Erika_Mustermann.002.2.txt \
+"
+snakemake --dryrun --snakefile ./workflow/rules/3_0_target_rule.smk $smk_targets
+snakemake --cores 1 --snakefile ./workflow/rules/3_0_target_rule.smk $smk_targets
+ls -l results/3_target_rule/
