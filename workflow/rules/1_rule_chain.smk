@@ -69,3 +69,12 @@ rule final:
         """
         printf "$(cat {input[0]}) \n $(cat {input[1]}) \n $(cat {input[2]}) \n $(cat {input[3]}) \n $(cat {input[4]}) \n" > {output}
         """
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////
+# EXERCISE
+# /////////////////////////////////////////////////////////////////////////////////////////////////
+# Task:
+# Set up rules that run
+# 0) making bowtie2 index from the reference genome (resouce/ref_genome/chr1.fa.gz)
+# 1) trim_galore on the input fastq files (from resource/fastq/test_R*.fastq.gz)
+# 2) using the outputs from step 0 and 1, run bowtie2 mapping.
