@@ -80,8 +80,13 @@ smk_targets="\
 results/3_target_rule/student_info_Jane_Doe.001.1.txt \
 results/3_target_rule/student_info_John_Doe.001.2.txt \
 results/3_target_rule/student_info_Max_Mustermann.002.1.txt \
-results/3_target_rule/student_info_Erika_Mustermann.002.2.txt \
+results/3_target_rule/student_info_Erika_Musterfrau.002.2.txt \
 "
 snakemake --dryrun --snakefile ./workflow/rules/3_0_target_rule.smk $smk_targets
 snakemake --cores 1 --snakefile ./workflow/rules/3_0_target_rule.smk $smk_targets
 ls -l results/3_target_rule/
+
+# Python and config file ------------------------------------------------
+snakemake --force --dryrun --snakefile ./workflow/rules/4_python_config.smk
+snakemake --force --cores 1 --snakefile ./workflow/rules/4_python_config.smk
+cat results/4_python_config/All_greetings.txt
