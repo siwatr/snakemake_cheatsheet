@@ -22,3 +22,5 @@ fi
 # Test sequence -----------------------------------------------------------------------------------
 mkdir -p ./resource/fastq
 scp hpcl:/fs/pool/pool-toti-bioinfo/bioinfo/siwat_chad/dev/lab_pipelines/snakemake_ngs/test/fastq/Nr_TIP_locusA.[12].fastq ./resource/fastq/
+mv ./resource/fastq/Nr_TIP_locusA.1.fastq ./resource/fastq/test_R1.fastq
+mv ./resource/fastq/Nr_TIP_locusA.2.fastq ./resource/fastq/test_R2.fastq

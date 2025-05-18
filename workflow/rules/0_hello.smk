@@ -7,3 +7,14 @@ rule hello_world:
         """
         echo "Hello, world!" > {output}
         """
+
+
+# /////////////////////////////////////////////////////////////////////////////////////////////////
+# EXERCISE
+# /////////////////////////////////////////////////////////////////////////////////////////////////
+# Set up:
+# make a new folder called `workflow_ex/rules`, for rules files for this exercise
+# In resouce/fastq folder you will find fastq files
+
+# Task:
+# Making a simple rule(s) for running FastQC on these files
