@@ -36,3 +36,34 @@ snakemake --force --dryrun --snakefile ./workflow/rules/1_rule_chain.smk $smk_ta
 # Showing which rules are run to get certain target file
 snakemake --dag --snakefile "./workflow/rules/1_rule_chain.smk" "results/1_rule_chain/hello_final.txt" | dot -Tsvg > results/1_rule_chain/dag.svg
 
+# Wildcards: --------------------------------------------------------------------------------------
+# wildcard: name: "Jane.Doe"
+snakemake --dryrun --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello-0-Jane.Doe.txt
+snakemake --cores 1 --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello-0-Jane.Doe.txt
+cat results/2_wildcards/hello-0-Jane.Doe.txt
+
+# wildcard: name: "Max.Mustermann"
+snakemake --dryrun --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello-0-Max.Mustermann.txt
+snakemake --cores 1 --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello-0-Max.Mustermann.txt
+cat results/2_wildcards/hello-0-Max.Mustermann.txt
+
+
+# wildcard_constraints examples:
+# Intended wildcards are:
+#  - student: "Jane.Doe" 
+#  - id_num: "001.1"
+
+# This should activate the rule without constraint on wildcard
+# It should detect the following wildcards: [student=Jane_Doe.001, id_num=1], which is not what we want
+snakemake --dryrun --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello_student-0-Jane_Doe.001.1.txt
+snakemake --cores 1 --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello_student-0-Jane_Doe.001.1.txt
+cat results/2_wildcards/hello_student-0-Jane_Doe.001.1.txt
+
+# By using the wildcard_constraints, it should now detect the intended wildcards.
+snakemake --dryrun --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello_student-1-Jane_Doe.001.1.txt
+snakemake --cores 1 --snakefile ./workflow/rules/2_wildcards.smk results/2_wildcards/hello_student-1-Jane_Doe.001.1.txt
+cat results/2_wildcards/hello_student-1-Jane_Doe.001.1.txt
+
+snakemake --dryrun --snakefile ./workflow/rules/2_wildcards.smk "results/2_wildcards/student_info_Jane_Doe.001.1.txt"
+snakemake --cores 1 --snakefile ./workflow/rules/2_wildcards.smk "results/2_wildcards/student_info_Jane_Doe.001.1.txt"
+cat results/2_wildcards/student_info_Jane_Doe.001.1.txt
