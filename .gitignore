@@ -1,2 +1,4 @@
 results
 .snakemake
+resource/ref_genome
+resource/fastq
